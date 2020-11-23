@@ -1,0 +1,14 @@
+<launch>
+  <arg name="veh"/>
+  <arg name="rectify" default="true" />
+  <arg name="x_init" default="0.5" doc="The initial x position estimate in meter of duckiebot in front of map frame" />
+  <group ns="$(arg veh)">
+    <node pkg="fused_localization" type="fused_localization_node.py" name="fused_localization_node" output="screen">
+        <param name="rectify" type="bool" value="$(arg rectify)" />
+        <param name="x_init" type="double" value="$(arg x_init)" />
+    </node>
+    <node pkg="fused_localization" type="encoder_localization_node.py" name="encoder_localization_node" output="screen">
+    </node>
+  </group>
+
+</launch>
